@@ -40,13 +40,13 @@ def calculate_accuracy(target_sentence : str, user_input : str, strict: bool):
 	#TODO: when tutor tells us how robust this system needs to be
 
 	accuracy = 100
-	return accuracy
+	return int(accuracy)
 
 
 def calculate_wpm(user_input : str, time_taken : float, accuracy : int):
 	numberOfWords = len(user_input.split())
 	wpm = numberOfWords / (time_taken / 60) * accuracy / 100
-	return wpm
+	return int(wpm)
 
 
 #this allows the game to keep going until the user says they want to quit
@@ -60,7 +60,7 @@ while True:
 	while True:
 		try:
 			numberOfRounds = input(f"How many rounds do you want the game to be (must be between 3 and {len(POSSIBLE_SENTENCES)}): ")
-			if numberOfRounds == "":
+			if not  numberOfRounds.strip():
 				numberOfRounds = len(POSSIBLE_SENTENCES)
 			numberOfRounds = int(numberOfRounds)
 			if numberOfRounds >= 3 and numberOfRounds <= len(POSSIBLE_SENTENCES):
@@ -75,7 +75,7 @@ while True:
 	strict = False
 	while True:
 		strictModeStr = input("Do you want to use strict mode (y/n): ").lower()
-		if strictModeStr == "y" or strictModeStr == "yes":
+		if strictModeStr == "y" or strictModeStr == "yes" or not strictModeStr.strip():
 			strict = True
 			break
 		if strictModeStr == "n" or strictModeStr =="no":
@@ -100,6 +100,7 @@ while True:
 
 	for i in range(0, numberOfRounds):
 		print(f"Round {i + 1}/{numberOfRounds}. Your sentence is: ")
+		#ANCI code to make the text different colours
 		print(sentencesToUse[i])
 
 		tempTime = time.time() * -1
