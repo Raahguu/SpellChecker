@@ -65,8 +65,9 @@ while True:
 	while True:
 		try:
 			numberOfRounds = input(f"How many rounds do you want the game to be (must be between 3 and {len(POSSIBLE_SENTENCES)}): ")
+			if not numberOfRounds.isdigit(): 1/0
 			#if they didn't input anything
-			if not  numberOfRounds.strip():
+			if not numberOfRounds.strip():
 				numberOfRounds = len(POSSIBLE_SENTENCES)
 			numberOfRounds = int(numberOfRounds)
 			#if the number is within the correct bounds
@@ -105,9 +106,9 @@ while True:
 	unUsedSentences : list = POSSIBLE_SENTENCES + [] #+ [] to ensure deep copy / value copy and not reference copy
 	#loop through the number of questions and grab a random unchossen so far question
 	for i in range(numberOfRounds):
-		randInt = random.randrange(0,len(unUsedSentences))
-		sentencesToUse.append(unUsedSentences[randInt])
-		del unUsedSentences[randInt]
+		randSentence = random.choice(unUsedSentences)
+		sentencesToUse.append()
+		del unUsedSentences[randSentence]
 	
 	input("Press Enter to begin: ")
 
@@ -156,7 +157,7 @@ while True:
 
 		#print out a table for the results of every round
 		print("Breakdown: ")
-		print("Round \tAccuracy \t WPM")
+		print("Round \tAccuracy \tWPM")
 		print("-"*5 + "\t" + "-" * 8 + "\t" + "-"*3)
 		for i in range(0, len(accuracies)):
 			print(f"{i+1} \t{accuracies[i]:.0f}% \t\t{playerWPMs[i]:.0f}")
