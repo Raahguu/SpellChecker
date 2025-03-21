@@ -106,9 +106,9 @@ while True:
 	unUsedSentences : list = POSSIBLE_SENTENCES + [] #+ [] to ensure deep copy / value copy and not reference copy
 	#loop through the number of questions and grab a random unchossen so far question
 	for i in range(numberOfRounds):
-		randSentence = random.choice(unUsedSentences)
-		sentencesToUse.append()
-		del unUsedSentences[randSentence]
+		randInt = random.randrange(0,len(unUsedSentences))
+		sentencesToUse.append(unUsedSentences[randInt])
+		del unUsedSentences[randInt]
 	
 	input("Press Enter to begin: ")
 
